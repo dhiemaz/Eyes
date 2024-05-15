@@ -4,10 +4,10 @@ import { Metadata } from 'next';
  
 export const metadata: Metadata = {
   title: {
-    template: '%s | Acme Dashboard',
-    default: 'Acme Dashboard',
+    template: '%s | Eyes Dashboard',
+    default: 'Eyes Dashboard',
   },
-  description: 'The official Next.js Course Dashboard, built with App Router.',
+  description: 'Eyes - GeoData Management System Dashboard.',
   metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
 };
 

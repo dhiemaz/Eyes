@@ -7,9 +7,20 @@ import type { User } from '@/app/lib/definitions';
 import bcrypt from 'bcrypt';
 
 async function getUser(email: string): Promise<User | undefined> {
+  const users = [
+    {
+      id: '410544b2-4001-4271-9855-fec4b6a6442a',
+      name: 'User',
+      email: 'user@nextmail.com',
+      password: '123456',
+    },
+  ];
+
   try {
-    const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
-    return user.rows[0];
+
+    //const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
+    //return user.rows[0];
+    return users[0];
   } catch (error) {
     console.error('Failed to fetch user:', error);
     throw new Error('Failed to fetch user.');
@@ -28,11 +39,14 @@ export const { auth, signIn, signOut } = NextAuth({
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
           const user = await getUser(email);
-          if (!user) return null;
+          console.log(user);
 
-          const passwordsMatch = await bcrypt.compare(password, user.password);
+          if (!user) return null;
+          return user;
+
+          //const passwordsMatch = await bcrypt.compare(password, user.password);
  
-          if (passwordsMatch) return user;
+          //if (passwordsMatch) return user;
         }
 
         console.log('Invalid credentials');
